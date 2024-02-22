@@ -1,10 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://beesqr7cmmmgl"]
+[gd_scene load_steps=7 format=3 uid="uid://beesqr7cmmmgl"]
 
-[ext_resource type="Texture2D" uid="uid://bqpxvw5fj6jhp" path="res://OtherPictures/BGmenu.png" id="1_g3pbb"]
-[ext_resource type="Script" path="res://Scripts/startButton.gd" id="2_p3k33"]
-[ext_resource type="Texture2D" uid="uid://b57oo3ypgpdio" path="res://OtherPictures/start.png" id="3_xhyku"]
-[ext_resource type="Script" path="res://Scripts/quitButton.gd" id="4_r3sm8"]
-[ext_resource type="Texture2D" uid="uid://cglt81euf1nol" path="res://OtherPictures/quit.png" id="5_bwddg"]
+[ext_resource type="Texture2D" uid="uid://bqpxvw5fj6jhp" path="res://resources/assets/OtherPictures/BGmenu.png" id="1_g3pbb"]
+[ext_resource type="Script" path="res://Scripts/menu/startButton.gd" id="2_p3k33"]
+[ext_resource type="Texture2D" uid="uid://b57oo3ypgpdio" path="res://resources/assets/OtherPictures/start.png" id="3_xhyku"]
+[ext_resource type="Script" path="res://Scripts/menu/quitButton.gd" id="4_r3sm8"]
+[ext_resource type="Texture2D" uid="uid://cglt81euf1nol" path="res://resources/assets/OtherPictures/quit.png" id="5_bwddg"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_i83yd"]
+script/source = "using Godot;
+using System;
+
+public partial class Sprite2D : Godot.Sprite2D
+{
+	// Called when the node enters the scene tree for the first time.
+	public 
+}
+"
 
 [node name="menu" type="Node2D"]
 
@@ -38,5 +49,9 @@ position = Vector2(112, 35.5)
 scale = Vector2(0.678788, 0.546154)
 texture = ExtResource("5_bwddg")
 
+[node name="Sprite2D" type="Sprite2D" parent="quitButton"]
+script = SubResource("CSharpScript_i83yd")
+
 [connection signal="pressed" from="startButton" to="startButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="quitButton" to="quitButton" method="_on_entered"]
 [connection signal="pressed" from="quitButton" to="quitButton" method="_on_pressed"]
