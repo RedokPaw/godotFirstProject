@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://beesqr7cmmmgl"]
+
+[ext_resource type="Script" path="res://Scripts/startButton.gd" id="2_gtavm"]
+[ext_resource type="Texture2D" uid="uid://b57oo3ypgpdio" path="res://OtherPictures/start.png" id="2_hwp32"]
+[ext_resource type="Texture2D" uid="uid://cglt81euf1nol" path="res://OtherPictures/quit.png" id="3_tqpim"]
+[ext_resource type="Script" path="res://Scripts/quitButton.gd" id="4_7xkdg"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bat84"]
+load_path = "res://.godot/imported/mainBG.png-069a18b7b52940b0d03107e22440910b.ctex"
+
+[node name="menu" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.917928, 0.827586)
+texture = SubResource("CompressedTexture2D_bat84")
+centered = false
+
+[node name="startButton" type="Button" parent="."]
+offset_left = 469.0
+offset_top = 218.0
+offset_right = 693.0
+offset_bottom = 288.0
+script = ExtResource("2_gtavm")
+
+[node name="start" type="Sprite2D" parent="startButton"]
+position = Vector2(112, 35)
+scale = Vector2(0.678788, 0.538462)
+texture = ExtResource("2_hwp32")
+
+[node name="quitButton" type="Button" parent="."]
+offset_left = 469.0
+offset_top = 309.0
+offset_right = 693.0
+offset_bottom = 380.0
+script = ExtResource("4_7xkdg")
+
+[node name="quit" type="Sprite2D" parent="quitButton"]
+position = Vector2(112, 35.5)
+scale = Vector2(0.678788, 0.546154)
+texture = ExtResource("3_tqpim")
+
+[connection signal="pressed" from="startButton" to="startButton" method="_on_pressed"]
+[connection signal="pressed" from="quitButton" to="quitButton" method="_on_pressed"]

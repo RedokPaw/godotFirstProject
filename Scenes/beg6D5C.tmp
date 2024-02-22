@@ -1,0 +1,91 @@
+[gd_scene load_steps=11 format=3 uid="uid://bjed3rt8nc61g"]
+
+[ext_resource type="Texture2D" uid="uid://cep3pavb580nc" path="res://Forest/8.png" id="1_5qu8c"]
+[ext_resource type="Script" path="res://Scenes/Beginning.gd" id="1_mhl7m"]
+[ext_resource type="Texture2D" uid="uid://ccxucu6sgfxqr" path="res://Forest/7.png" id="2_adnvx"]
+[ext_resource type="Texture2D" uid="uid://477s0gs4s0il" path="res://Forest/6.png" id="3_7c2qf"]
+[ext_resource type="Texture2D" uid="uid://cxinkt1eri7r6" path="res://Forest/5.png" id="4_w5kt2"]
+[ext_resource type="Texture2D" uid="uid://dsx5r476be1dy" path="res://Forest/4.png" id="5_uxd4k"]
+[ext_resource type="Texture2D" uid="uid://djksvsys2e5ia" path="res://Forest/3.png" id="6_1s6rv"]
+[ext_resource type="Texture2D" uid="uid://j2groc2ux462" path="res://Forest/2.png" id="7_qik16"]
+[ext_resource type="Texture2D" uid="uid://g8h0pat325ut" path="res://Forest/1.png" id="8_naivn"]
+[ext_resource type="PackedScene" uid="uid://cugh225qiomfq" path="res://Player/knight.tscn" id="10_ce5h8"]
+
+[node name="Beginning" type="Node2D"]
+
+[node name="Beginning" type="ParallaxBackground" parent="."]
+script = ExtResource("1_mhl7m")
+
+[node name="BGLayer8" type="ParallaxLayer" parent="Beginning"]
+motion_scale = Vector2(0.1, 1)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Layer8" type="Sprite2D" parent="Beginning/BGLayer8"]
+scale = Vector2(3, 3)
+texture = ExtResource("1_5qu8c")
+centered = false
+
+[node name="BGLayer7" type="ParallaxLayer" parent="Beginning"]
+motion_scale = Vector2(0.15, 1)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Layer7" type="Sprite2D" parent="Beginning/BGLayer7"]
+scale = Vector2(3, 3)
+texture = ExtResource("2_adnvx")
+centered = false
+
+[node name="BGLayer6" type="ParallaxLayer" parent="Beginning"]
+motion_scale = Vector2(0.2, 1)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Layer6" type="Sprite2D" parent="Beginning/BGLayer6"]
+scale = Vector2(3, 3)
+texture = ExtResource("3_7c2qf")
+centered = false
+
+[node name="BGLayer5" type="ParallaxLayer" parent="Beginning"]
+motion_scale = Vector2(0.4, 1)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Layer5" type="Sprite2D" parent="Beginning/BGLayer5"]
+scale = Vector2(3, 3)
+texture = ExtResource("4_w5kt2")
+centered = false
+
+[node name="BGLayer4" type="ParallaxLayer" parent="Beginning"]
+motion_scale = Vector2(0.6, 1)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Layer4" type="Sprite2D" parent="Beginning/BGLayer4"]
+scale = Vector2(3, 3)
+texture = ExtResource("5_uxd4k")
+centered = false
+
+[node name="BGLayer3" type="ParallaxLayer" parent="Beginning"]
+motion_scale = Vector2(0.8, 1)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Layer3" type="Sprite2D" parent="Beginning/BGLayer3"]
+scale = Vector2(3, 3)
+texture = ExtResource("6_1s6rv")
+centered = false
+
+[node name="BGLayer2" type="ParallaxLayer" parent="Beginning"]
+motion_scale = Vector2(0.9, 1)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Layer2" type="Sprite2D" parent="Beginning/BGLayer2"]
+scale = Vector2(3, 3)
+texture = ExtResource("7_qik16")
+centered = false
+
+[node name="BGLayer1" type="ParallaxLayer" parent="Beginning"]
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Layer1" type="Sprite2D" parent="Beginning/BGLayer1"]
+scale = Vector2(3, 3)
+texture = ExtResource("8_naivn")
+centered = false
+
+[node name="Knight" parent="." instance=ExtResource("10_ce5h8")]
+position = Vector2(59, 618)
