@@ -153,3 +153,4 @@ frame = 2
 frame_progress = 0.451046
 
 [connection signal="body_entered" from="Detector" to="." method="_on_detector_body_entered"]
+[connection signal="body_exited" from="Detector" to="." method="_on_detector_body_exited"]

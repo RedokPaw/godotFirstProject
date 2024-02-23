@@ -2,10 +2,11 @@ extends CharacterBody2D
 
 
 const SPEED = 150.0
-const JUMP_VELOCITY = -300.0
+const JUMP_VELOCITY = -340.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var health = 100
 
 @onready var anim = $Animation
 
@@ -42,6 +43,10 @@ func _physics_process(delta):
 		
 	elif direction == 1:
 		anim.flip_h = false
+	
+	if health <= 0:
+		queue_free()
+		get_tree().change_scene_to_file("res://ScenesOfLocations/menu.tscn")
 		
 		
 	move_and_slide()
