@@ -1,0 +1,72 @@
+[gd_scene load_steps=11 format=3 uid="uid://d0h6af2a7adqx"]
+
+[ext_resource type="Texture2D" uid="uid://ca8bewck2oidk" path="res://resources/assets/Collectibles/coins-chests-etc-2-0-noborders.png" id="1_1cn36"]
+[ext_resource type="Script" path="res://Scripts/Collectibles/CoinGold.gd" id="1_xrlp6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bxcqu"]
+radius = 4.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5cki"]
+atlas = ExtResource("1_1cn36")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxsty"]
+atlas = ExtResource("1_1cn36")
+region = Rect2(80, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2yaa"]
+atlas = ExtResource("1_1cn36")
+region = Rect2(96, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vkiss"]
+atlas = ExtResource("1_1cn36")
+region = Rect2(112, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tiejx"]
+atlas = ExtResource("1_1cn36")
+region = Rect2(128, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yw0it"]
+atlas = ExtResource("1_1cn36")
+region = Rect2(144, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yx6g0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5cki")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxsty")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s2yaa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vkiss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tiejx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yw0it")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}]
+
+[node name="CoinGold" type="Area2D"]
+script = ExtResource("1_xrlp6")
+
+[node name="CoinGoldCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bxcqu")
+
+[node name="CoinGold" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_yx6g0")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.649789
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

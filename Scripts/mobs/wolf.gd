@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var speed = 30
+var speed = 100
 var chase = false
 
-@onready var anim = $AnimatedSprite2D
+@onready var anim = $WolfAnimatedSprite2D
 
 var alive = true
 
@@ -18,17 +18,17 @@ func _physics_process(delta):
 	if alive == true:
 		if chase == true:
 			velocity.x = direction.x * speed
-			anim.play ("walk")
+			anim.play ("run")
 			
 		else:
 			velocity.x = 0
 			anim.play("afk")
 			
 		if direction.x < 0:
-			anim.flip_h = true
+			anim.flip_h = false
 			
 		else:
-			anim.flip_h = false
+			anim.flip_h = true
 	
 	move_and_slide()
 # Called when the node enters the scene tree for the first time.
