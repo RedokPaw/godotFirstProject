@@ -1,24 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://beesqr7cmmmgl"]
+[gd_scene load_steps=7 format=3 uid="uid://beesqr7cmmmgl"]
 
-[ext_resource type="Texture2D" uid="uid://bqpxvw5fj6jhp" path="res://resources/assets/OtherPictures/BGmenu.png" id="1_g3pbb"]
+[ext_resource type="Texture2D" uid="uid://bqpxvw5fj6jhp" path="res://resources/assets/OtherPictures/OldMAIN/BGmenu.png" id="1_g3pbb"]
 [ext_resource type="Script" path="res://Scripts/menu/startButton.gd" id="2_p3k33"]
-[ext_resource type="Texture2D" uid="uid://b57oo3ypgpdio" path="res://resources/assets/OtherPictures/start.png" id="3_xhyku"]
+[ext_resource type="Texture2D" uid="uid://b57oo3ypgpdio" path="res://resources/assets/OtherPictures/OldMAIN/start.png" id="3_xhyku"]
 [ext_resource type="Script" path="res://Scripts/menu/quitButton.gd" id="4_r3sm8"]
-[ext_resource type="Texture2D" uid="uid://cglt81euf1nol" path="res://resources/assets/OtherPictures/quit.png" id="5_bwddg"]
+[ext_resource type="Texture2D" uid="uid://cglt81euf1nol" path="res://resources/assets/OtherPictures/OldMAIN/quit.png" id="5_bwddg"]
+[ext_resource type="Texture2D" uid="uid://dstqq5g55i36u" path="res://resources/assets/OtherPictures/NewMAIN/Nazvanie.png" id="6_qf2nl"]
 
 [node name="menu" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="BackGround" type="Sprite2D" parent="."]
 position = Vector2(-1, -37)
 scale = Vector2(0.934253, 0.802802)
 texture = ExtResource("1_g3pbb")
 centered = false
 
 [node name="startButton" type="Button" parent="."]
-offset_left = 469.0
-offset_top = 218.0
-offset_right = 693.0
-offset_bottom = 288.0
+offset_left = 489.0
+offset_top = 384.0
+offset_right = 713.0
+offset_bottom = 454.0
 script = ExtResource("2_p3k33")
 
 [node name="start" type="Sprite2D" parent="startButton"]
@@ -27,16 +28,21 @@ scale = Vector2(0.678788, 0.538462)
 texture = ExtResource("3_xhyku")
 
 [node name="quitButton" type="Button" parent="."]
-offset_left = 469.0
-offset_top = 309.0
-offset_right = 693.0
-offset_bottom = 380.0
+offset_left = 489.0
+offset_top = 475.0
+offset_right = 713.0
+offset_bottom = 546.0
 script = ExtResource("4_r3sm8")
 
 [node name="quit" type="Sprite2D" parent="quitButton"]
 position = Vector2(112, 35.5)
 scale = Vector2(0.678788, 0.546154)
 texture = ExtResource("5_bwddg")
+
+[node name="Nazvanie" type="Sprite2D" parent="."]
+position = Vector2(583, 151)
+scale = Vector2(1.06633, 1.06633)
+texture = ExtResource("6_qf2nl")
 
 [connection signal="mouse_entered" from="startButton" to="startButton" method="on_mouse_entered"]
 [connection signal="mouse_exited" from="startButton" to="startButton" method="on_mouse_exited"]

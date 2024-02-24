@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b57oo3ypgpdio"
-path="res://.godot/imported/start.png-727708c4d8346956dc3b183f0840995d.ctex"
+uid="uid://10663s6arnk8"
+path="res://.godot/imported/NazvanieWhite.png-25883638003d5ef5fafd04fd221b43e8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/assets/OtherPictures/start.png"
-dest_files=["res://.godot/imported/start.png-727708c4d8346956dc3b183f0840995d.ctex"]
+source_file="res://resources/assets/OtherPictures/NewMAIN/NazvanieWhite.png"
+dest_files=["res://.godot/imported/NazvanieWhite.png-25883638003d5ef5fafd04fd221b43e8.ctex"]
 
 [params]
 
