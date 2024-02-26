@@ -184,6 +184,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 2
 script = ExtResource("1_q7tep")
 
 [node name="PlayerCollisionShape" type="CollisionShape2D" parent="."]
