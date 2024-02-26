@@ -33111,19 +33111,19 @@ floor_max_angle = 1.49924
 floor_snap_length = 6.0
 safe_margin = 0.001
 
-[node name="Skeleton1" parent="Mobs" instance=ExtResource("18_02ieg")]
+[node name="Wolf4" parent="Mobs" instance=ExtResource("18_02ieg")]
 position = Vector2(1178, 558)
 
-[node name="Skeleton2" parent="Mobs" instance=ExtResource("18_02ieg")]
+[node name="Wolf5" parent="Mobs" instance=ExtResource("18_02ieg")]
 position = Vector2(1094, 591)
 
-[node name="Skeleton3" parent="Mobs" instance=ExtResource("18_02ieg")]
+[node name="Wolf6" parent="Mobs" instance=ExtResource("18_02ieg")]
 position = Vector2(947, 592)
 
-[node name="Skeleton4" parent="Mobs" instance=ExtResource("18_02ieg")]
+[node name="Wolf7" parent="Mobs" instance=ExtResource("18_02ieg")]
 position = Vector2(1015, 591)
 
-[node name="Wolf" parent="Mobs" instance=ExtResource("18_02ieg")]
+[node name="Wolf1" parent="Mobs" instance=ExtResource("18_02ieg")]
 position = Vector2(1563, 580)
 
 [node name="Wolf2" parent="Mobs" instance=ExtResource("18_02ieg")]
