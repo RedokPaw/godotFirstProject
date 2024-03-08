@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cugh225qiomfq"]
+[gd_scene load_steps=25 format=3 uid="uid://cugh225qiomfq"]
 
 [ext_resource type="Script" path="res://Scripts/player/player.gd" id="1_q7tep"]
 [ext_resource type="Texture2D" uid="uid://cflrgxfclpp5c" path="res://resources/assets/Player/adventurer-Sheet.png" id="2_qxa4k"]
@@ -61,14 +61,6 @@ region = Rect2(50, 111, 50, 37)
 [sub_resource type="AtlasTexture" id="AtlasTexture_xectw"]
 atlas = ExtResource("2_qxa4k")
 region = Rect2(100, 111, 50, 37)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_31dc2"]
-atlas = ExtResource("2_qxa4k")
-region = Rect2(0, 74, 50, 37)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fb6ak"]
-atlas = ExtResource("2_qxa4k")
-region = Rect2(50, 74, 50, 37)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1kf0b"]
 atlas = ExtResource("2_qxa4k")
@@ -148,12 +140,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xectw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_31dc2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fb6ak")
 }],
 "loop": false,
 "name": &"jump",
@@ -195,6 +181,8 @@ position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_cwli1")
 animation = &"jump"
 autoplay = "afk"
+frame = 7
+frame_progress = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.8, 1.8)
