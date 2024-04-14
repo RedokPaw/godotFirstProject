@@ -1,6 +1,7 @@
-[gd_scene load_steps=36 format=3 uid="uid://bjed3rt8nc61g"]
+[gd_scene load_steps=40 format=3 uid="uid://bjed3rt8nc61g"]
 
 [ext_resource type="Texture2D" uid="uid://cep3pavb580nc" path="res://resources/assets/Locations/Tutorial/TutorialParallax/8.png" id="1_5qu8c"]
+[ext_resource type="Script" path="res://ScenesOfLocations/tutorial.gd" id="1_8at6l"]
 [ext_resource type="Texture2D" uid="uid://ccxucu6sgfxqr" path="res://resources/assets/Locations/Tutorial/TutorialParallax/7.png" id="2_adnvx"]
 [ext_resource type="Texture2D" uid="uid://477s0gs4s0il" path="res://resources/assets/Locations/Tutorial/TutorialParallax/6.png" id="3_7c2qf"]
 [ext_resource type="Texture2D" uid="uid://cxinkt1eri7r6" path="res://resources/assets/Locations/Tutorial/TutorialParallax/5.png" id="4_w5kt2"]
@@ -17,6 +18,8 @@
 [ext_resource type="Texture2D" uid="uid://dxqx8tx50vna6" path="res://resources/assets/Locations/Tutorial/TutorialTextures/SET1_Mainlev_build.png" id="11_osaal"]
 [ext_resource type="PackedScene" uid="uid://dn8xyk0fndy6s" path="res://resources/scenes/Mobs/rat/rat.tscn" id="15_y20lg"]
 [ext_resource type="PackedScene" uid="uid://blmecvbsnm4u1" path="res://resources/scenes/Mobs/Wolf/Wolf.tscn" id="18_02ieg"]
+[ext_resource type="Script" path="res://Scripts/level_1/Death_Zone.gd" id="18_u5sjm"]
+[ext_resource type="PackedScene" uid="uid://bww6ajfciqj83" path="res://Animations/transition_screen.tscn" id="19_b1k6s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a8wy8"]
 texture = ExtResource("9_21unv")
@@ -32990,7 +32993,11 @@ func _on_timer_timeout():
 	add_child(coinTemp)
 "
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f855r"]
+size = Vector2(380, 38.5)
+
 [node name="Tutorial" type="Node2D"]
+script = ExtResource("1_8at6l")
 
 [node name="Tutorial" type="ParallaxBackground" parent="."]
 scroll_offset = Vector2(53.9997, -617)
@@ -33102,6 +33109,7 @@ layer_3/tile_data = PackedInt32Array()
 
 [node name="Player" parent="Player" instance=ExtResource("10_ce5h8")]
 position = Vector2(102, 576)
+collision_layer = 5
 
 [node name="Mobs" type="Node2D" parent="."]
 
@@ -33159,4 +33167,19 @@ script = SubResource("GDScript_ud2en")
 wait_time = 3.0
 autostart = true
 
+[node name="Fall Death" type="Node2D" parent="."]
+
+[node name="Death_Zone" type="Area2D" parent="Fall Death"]
+collision_mask = 4
+monitorable = false
+script = ExtResource("18_u5sjm")
+
+[node name="DeathCollision" type="CollisionShape2D" parent="Fall Death/Death_Zone"]
+position = Vector2(563, 654)
+shape = SubResource("RectangleShape2D_f855r")
+
+[node name="TransitionScreen" parent="." instance=ExtResource("19_b1k6s")]
+
 [connection signal="timeout" from="Collectibles/Timer" to="Collectibles" method="_on_timer_timeout"]
+[connection signal="body_entered" from="Fall Death/Death_Zone" to="Fall Death/Death_Zone" method="_on_body_entered"]
+[connection signal="transitioned" from="TransitionScreen" to="Player/Player" method="_on_transition_screen_transitioned"]

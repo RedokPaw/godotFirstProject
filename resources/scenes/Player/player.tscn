@@ -179,10 +179,8 @@ shape = SubResource("CapsuleShape2D_jyku3")
 [node name="Animation" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_cwli1")
-animation = &"jump"
+animation = &"run"
 autoplay = "afk"
-frame = 7
-frame_progress = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.8, 1.8)
