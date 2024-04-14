@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://cugh225qiomfq"]
+[gd_scene load_steps=59 format=3 uid="uid://cugh225qiomfq"]
 
 [ext_resource type="Script" path="res://Scripts/player/player.gd" id="1_q7tep"]
 [ext_resource type="Texture2D" uid="uid://cflrgxfclpp5c" path="res://resources/assets/Player/adventurer-Sheet.png" id="2_qxa4k"]
@@ -253,7 +253,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ib7g6")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack1",
 "speed": 12.0
 }, {
@@ -270,9 +270,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_s5ahc")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack2",
-"speed": 12.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -296,7 +296,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8d6ku")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack3",
 "speed": 12.0
 }, {
@@ -352,7 +352,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_d6cem")
 }],
-"loop": true,
+"loop": false,
 "name": &"attackFull",
 "speed": 12.0
 }, {
@@ -420,6 +420,10 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qck3e"]
+radius = 17.0
+height = 34.0
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 2
 script = ExtResource("1_q7tep")
@@ -430,10 +434,10 @@ shape = SubResource("CapsuleShape2D_jyku3")
 [node name="Animation" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_cwli1")
-animation = &"attackFull"
+animation = &"attack2"
 autoplay = "afk"
-frame = 9
-frame_progress = 0.872289
+frame = 3
+frame_progress = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.8, 1.8)
@@ -444,3 +448,17 @@ limit_bottom = 645
 limit_smoothed = true
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
+
+[node name="WeaponSprite2D" type="Sprite2D" parent="."]
+
+[node name="WeaponArea2D" type="Area2D" parent="WeaponSprite2D"]
+monitorable = false
+
+[node name="WeaponCollisionShape2D" type="CollisionShape2D" parent="WeaponSprite2D/WeaponArea2D"]
+position = Vector2(6, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_qck3e")
+disabled = true
+
+[connection signal="animation_finished" from="Animation" to="." method="_on_animation_animation_finished"]
+[connection signal="body_entered" from="WeaponSprite2D/WeaponArea2D" to="." method="_on_weapon_area_2d_body_entered"]

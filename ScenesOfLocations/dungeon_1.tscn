@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://dwktmwg6x7bhc"]
+[gd_scene load_steps=18 format=3 uid="uid://dwktmwg6x7bhc"]
 
 [ext_resource type="Texture2D" uid="uid://w8frpeolnk7k" path="res://resources/assets/Locations/Dungeon1/Dungeon1Parallax/7.png" id="1_k1n3d"]
+[ext_resource type="Script" path="res://ScenesOfLocations/dungeon_1.gd" id="1_nk3fi"]
 [ext_resource type="Texture2D" uid="uid://gioavg5g6nss" path="res://resources/assets/Locations/Dungeon1/Dungeon1Parallax/6.png" id="2_8riu1"]
 [ext_resource type="Texture2D" uid="uid://cr01463lds8e3" path="res://resources/assets/Locations/Dungeon1/Dungeon1Parallax/5.png" id="3_1wcde"]
 [ext_resource type="Texture2D" uid="uid://dkd4djatlqt1y" path="res://resources/assets/Locations/Dungeon1/Dungeon1Parallax/4.png" id="4_ttdha"]
@@ -11,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cpx5js128o0u4" path="res://resources/assets/Locations/Dungeon1/Dungeon1Textures/props1.png" id="9_js31p"]
 [ext_resource type="Texture2D" uid="uid://b2bsvbl3ft74r" path="res://resources/assets/Locations/Dungeon1/Dungeon1Textures/props2.png" id="10_i3nhh"]
 [ext_resource type="PackedScene" uid="uid://cugh225qiomfq" path="res://resources/scenes/Player/player.tscn" id="11_icu31"]
+[ext_resource type="PackedScene" uid="uid://bww6ajfciqj83" path="res://Animations/transition_screen.tscn" id="13_v7juu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vtxt8"]
 texture = ExtResource("8_y1b72")
@@ -14611,6 +14613,7 @@ sources/2 = SubResource("TileSetAtlasSource_nyur3")
 sources/3 = SubResource("TileSetAtlasSource_htskr")
 
 [node name="Dungeon1" type="Node2D"]
+script = ExtResource("1_nk3fi")
 
 [node name="Dungeon1" type="ParallaxBackground" parent="."]
 scroll_offset = Vector2(54.0003, -454.992)
@@ -14695,3 +14698,5 @@ layer_3/tile_data = PackedInt32Array(1114208, 917505, 43, 1114207, 917505, 43, 1
 
 [node name="Player" parent="." instance=ExtResource("11_icu31")]
 position = Vector2(31, 417)
+
+[node name="TransitionScreen" parent="." instance=ExtResource("13_v7juu")]

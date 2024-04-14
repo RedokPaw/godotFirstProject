@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bjed3rt8nc61g"]
+[gd_scene load_steps=41 format=3 uid="uid://bjed3rt8nc61g"]
 
 [ext_resource type="Texture2D" uid="uid://cep3pavb580nc" path="res://resources/assets/Locations/Tutorial/TutorialParallax/8.png" id="1_5qu8c"]
 [ext_resource type="Script" path="res://ScenesOfLocations/tutorial.gd" id="1_8at6l"]
@@ -32961,7 +32961,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	text = \"HP: \" + str($\"../../Player/Player\".health)
 	
 "
@@ -32976,7 +32976,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	text = \"GOLD: \" + str($\"../../Player/Player\".gold)
 "
 
@@ -32995,6 +32995,9 @@ func _on_timer_timeout():
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f855r"]
 size = Vector2(380, 38.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8k0fj"]
+size = Vector2(237, 338.5)
 
 [node name="Tutorial" type="Node2D"]
 script = ExtResource("1_8at6l")
@@ -33111,7 +33114,7 @@ layer_3/tile_data = PackedInt32Array()
 position = Vector2(102, 576)
 collision_layer = 5
 
-[node name="Mobs" type="Node2D" parent="."]
+[node name="Mobs" type="Node2D" parent="." groups=["Enemies"]]
 
 [node name="Rat" parent="Mobs" instance=ExtResource("15_y20lg")]
 position = Vector2(140, 590)
@@ -33119,26 +33122,23 @@ floor_max_angle = 1.49924
 floor_snap_length = 6.0
 safe_margin = 0.001
 
-[node name="Wolf4" parent="Mobs" instance=ExtResource("18_02ieg")]
-position = Vector2(1178, 558)
+[node name="Wolf1" parent="Mobs" groups=["Enemies"] instance=ExtResource("18_02ieg")]
+position = Vector2(232, 559)
 
-[node name="Wolf5" parent="Mobs" instance=ExtResource("18_02ieg")]
-position = Vector2(1094, 591)
+[node name="Wolf2" parent="Mobs" groups=["Enemies"] instance=ExtResource("18_02ieg")]
+position = Vector2(1308, 515)
 
-[node name="Wolf6" parent="Mobs" instance=ExtResource("18_02ieg")]
-position = Vector2(947, 592)
+[node name="Wolf3" parent="Mobs" groups=["Enemies"] instance=ExtResource("18_02ieg")]
+position = Vector2(1158, 564)
 
-[node name="Wolf7" parent="Mobs" instance=ExtResource("18_02ieg")]
-position = Vector2(1015, 591)
+[node name="Wolf4" parent="Mobs" groups=["Enemies"] instance=ExtResource("18_02ieg")]
+position = Vector2(1059, 594)
 
-[node name="Wolf1" parent="Mobs" instance=ExtResource("18_02ieg")]
-position = Vector2(1563, 580)
+[node name="Wolf5" parent="Mobs" groups=["Enemies"] instance=ExtResource("18_02ieg")]
+position = Vector2(1095, 594)
 
-[node name="Wolf2" parent="Mobs" instance=ExtResource("18_02ieg")]
-position = Vector2(1511, 580)
-
-[node name="Wolf3" parent="Mobs" instance=ExtResource("18_02ieg")]
-position = Vector2(1706, 482)
+[node name="Wolf6" parent="Mobs" groups=["Enemies"] instance=ExtResource("18_02ieg")]
+position = Vector2(950, 595)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -33180,6 +33180,16 @@ shape = SubResource("RectangleShape2D_f855r")
 
 [node name="TransitionScreen" parent="." instance=ExtResource("19_b1k6s")]
 
+[node name="NextLevelZone" type="Node2D" parent="."]
+
+[node name="NextLevelArea" type="Area2D" parent="NextLevelZone"]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NextLevelZone/NextLevelArea"]
+position = Vector2(2189.5, 376.75)
+shape = SubResource("RectangleShape2D_8k0fj")
+
 [connection signal="timeout" from="Collectibles/Timer" to="Collectibles" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Fall Death/Death_Zone" to="Fall Death/Death_Zone" method="_on_body_entered"]
 [connection signal="transitioned" from="TransitionScreen" to="Player/Player" method="_on_transition_screen_transitioned"]
+[connection signal="body_entered" from="NextLevelZone/NextLevelArea" to="." method="_on_next_level_area_body_entered"]

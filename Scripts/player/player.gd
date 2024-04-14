@@ -9,51 +9,55 @@ const JUMP_VELOCITY = -340.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var health = 100
 var gold = 0
-var can_control : bool = true 
-
+var can_control : bool = true
+@onready var weapon_collision = $WeaponSprite2D/WeaponArea2D/WeaponCollisionShape2D 
 @onready var anim = $Animation
 
 
 
 func _physics_process(delta):
 	if not can_control: return
+	
 	if not is_on_floor():
-		velocity.y += gravity * delta
+		velocity.y += gravity * delta	
 		
 	var jumping
-	if is_on_floor() and Input.is_action_just_pressed("ui_accept"):
+	if is_on_floor() and Input.is_action_just_pressed("ui_up") and not anim.animation == "attack2":
 		velocity.y = JUMP_VELOCITY
 		jumping = true
 		anim.play("jump")
-		
-	if jumping and velocity.y > 0:
+	if jumping and velocity.y > 0 and not anim.animation == "attack2":
 		jumping = false
 		anim.play("fall")
 	
-	if Input.is_action_just_pressed("ui_select"):
-		anim.play("attack")
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
+		
 	var direction = Input.get_axis("ui_left", "ui_right")
 	if direction:
 		velocity.x = direction * SPEED
-		if velocity.y == 0:
+		if velocity.y == 0 and not anim.animation == "attack2":
 			anim.play("run")
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-		if velocity.y == 0:
+		if velocity.y == 0 and not anim.animation == "attack2":
 			anim.play("afk")
+			
+	#attack		
+	if Input.is_action_just_pressed("ui_select"):
+		weapon_collision.disabled = false
+		anim.play("attack2")
+		await anim.animation_finished
+		anim.play("afk")
+		weapon_collision.disabled = true
 		
 	if direction == -1:
 		anim.flip_h = true
-		
+		weapon_collision.position = Vector2(-6,0)
 	elif direction == 1:
 		anim.flip_h = false
+		weapon_collision.position = Vector2(6,0)
 	
 	if health <= 0:
 		handle_death()
-		
 	move_and_slide()
 	
 func handle_death() -> void:
@@ -65,10 +69,15 @@ func handle_death() -> void:
 	
 func reset_player() -> void:
 	queue_free()
-	get_tree().change_scene_to_file("res://ScenesOfLocations/tutorial.tscn")
+	get_tree().change_scene_to_file(get_tree().current_scene.scene_file_path)
 	visible = true
 	can_control = true
 	
 
 func _on_transition_screen_transitioned():
 	reset_player()
+	
+func _on_weapon_area_2d_body_entered(body):
+	print("body entered weapon area")
+	if body.is_in_group("Enemies") and anim.animation == "attack2":
+		body.death()

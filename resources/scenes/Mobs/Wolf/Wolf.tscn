@@ -1,14 +1,15 @@
 [gd_scene load_steps=41 format=3 uid="uid://blmecvbsnm4u1"]
 
-[ext_resource type="Script" path="res://resources/scenes/Mobs/Wolf/Wolf.gd" id="1_4ngc1"]
+[ext_resource type="Script" path="res://Scripts/mobs/wolf.gd" id="1_k3t6e"]
 [ext_resource type="Texture2D" uid="uid://c2lk0jhs4idj1" path="res://resources/assets/Wolf/Canine_Gray_Idle.png" id="2_n4nsn"]
 [ext_resource type="Texture2D" uid="uid://xjvudhyib6km" path="res://resources/assets/Wolf/Canine_Gray_Attack.png" id="3_aekgr"]
 [ext_resource type="Texture2D" uid="uid://4f5pmh4ws3w3" path="res://resources/assets/Wolf/Canine_Gray_Death.png" id="4_6q5po"]
 [ext_resource type="Texture2D" uid="uid://d1cctbeff74j" path="res://resources/assets/Wolf/Canine_Gray_Run.png" id="5_gtmmi"]
 [ext_resource type="Texture2D" uid="uid://2gqh5s83x0nh" path="res://resources/assets/Wolf/Canine_Gray_Hit.png" id="6_vlx2i"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7a473"]
-size = Vector2(14, 11)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1jifd"]
+radius = 9.5
+height = 22.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kn18b"]
 atlas = ExtResource("2_n4nsn")
@@ -167,7 +168,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1qjjg")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 10.0
 }, {
@@ -248,19 +249,19 @@ radius = 119.004
 size = Vector2(11, 3)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y6siw"]
-size = Vector2(18, 11)
+size = Vector2(20, 11)
 
 [node name="Wolf" type="CharacterBody2D"]
-script = ExtResource("1_4ngc1")
+script = ExtResource("1_k3t6e")
 
 [node name="WolfCollision" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 3.5)
-shape = SubResource("RectangleShape2D_7a473")
+position = Vector2(-2, 3)
+shape = SubResource("CapsuleShape2D_1jifd")
 
 [node name="WolfAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.601563, 0.601563)
 sprite_frames = SubResource("SpriteFrames_htw61")
-animation = &"afk"
+animation = &"takeHit"
 autoplay = "afk"
 
 [node name="FollowArea" type="Area2D" parent="."]
@@ -278,8 +279,10 @@ shape = SubResource("RectangleShape2D_ykd62")
 [node name="Death2" type="Area2D" parent="."]
 
 [node name="FollowAreaCollision" type="CollisionShape2D" parent="Death2"]
-position = Vector2(-3, 3.5)
+position = Vector2(-4, 3.5)
 shape = SubResource("RectangleShape2D_y6siw")
+
+[node name="Timer" type="Timer" parent="Death2"]
 
 [connection signal="body_entered" from="FollowArea" to="." method="_on_follow_area_body_entered"]
 [connection signal="body_exited" from="FollowArea" to="." method="_on_follow_area_body_exited"]

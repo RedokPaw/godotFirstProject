@@ -30,19 +30,9 @@ func _physics_process(delta):
 		
 	move_and_slide()
 	
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
 func _on_detector_body_entered(body):
 	if body.name == "Player":
 		runaway = true
-
 
 func _on_detector_body_exited(body):
 	if body.name == "Player":
