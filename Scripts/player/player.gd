@@ -29,6 +29,9 @@ func _physics_process(delta):
 	if jumping and velocity.y > 0:
 		jumping = false
 		anim.play("fall")
+	
+	if Input.is_action_just_pressed("ui_select"):
+		anim.play("attack")
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
