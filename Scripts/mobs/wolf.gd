@@ -35,7 +35,6 @@ func _physics_process(delta):
 			
 		else:
 			anim.flip_h = true
-	
 	move_and_slide()
 	
 func attack(body):
@@ -47,7 +46,6 @@ func attack(body):
 func _on_follow_area_body_entered(body):
 	if body.name == "Player":
 		chase = true
-
 
 func _on_follow_area_body_exited(body):
 	if body.name == "Player":
@@ -63,11 +61,9 @@ func _on_death_2_body_entered(body):
 			anim.play("afk")
 		else:
 			break
-		if $Death2.has_overlapping_bodies():
+		if not $Death2.has_overlapping_bodies():
 			anim.play("afk")
 			break
-			
-		
 
 func death():
 	alive = false
