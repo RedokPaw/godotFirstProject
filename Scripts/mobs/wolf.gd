@@ -3,10 +3,12 @@ extends CharacterBody2D
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var speed = 100
 var chase = false
-var can_attack = true
+
+var Cooldown = load('res://Scripts/player/Cooldown.gd')
+
+@onready var attack_cooldown = Cooldown.new(2)
 
 @onready var anim = $WolfAnimatedSprite2D 
-@onready var AttackTimer = $Death2/Timer
 
 var alive = true
 
@@ -14,6 +16,7 @@ func _on_ready():
 	add_to_group("Enemies")
 
 func _physics_process(delta):
+	attack_cooldown.tick(delta)
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		
@@ -38,10 +41,9 @@ func _physics_process(delta):
 	move_and_slide()
 	
 func attack(body):
-	if can_attack:
-		can_attack = false
+	if attack_cooldown.is_ready():
+		anim.play("attack")
 		body.health -=30
-		get_tree().create_timer(3).timeout.connect(func(): can_attack = true)
 
 func _on_follow_area_body_entered(body):
 	if body.name == "Player":
@@ -54,8 +56,6 @@ func _on_follow_area_body_exited(body):
 func _on_death_2_body_entered(body):
 	while true:
 		if body.name == "Player":
-			await get_tree().create_timer(1).timeout
-			anim.play("attack")
 			attack(body)
 			await anim.animation_finished
 			anim.play("afk")

@@ -1,0 +1,67 @@
+[gd_resource type="Resource" script_class="DialogicStyle" load_steps=20 format=3 uid="uid://bgwevulaj2hxs"]
+
+[ext_resource type="PackedScene" path="res://dialogic/CustomCutscene/custom_cutscene.tscn" id="1_3y0w7"]
+[ext_resource type="PackedScene" uid="uid://c1k5m0w3r40xf" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_FullBackground/full_background_layer.tscn" id="1_kcqnr"]
+[ext_resource type="Script" path="res://addons/dialogic/Resources/dialogic_style_layer.gd" id="2_lxphw"]
+[ext_resource type="PackedScene" uid="uid://cy1y14inwkplb" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Portraits/vn_portrait_layer.tscn" id="3_duxv5"]
+[ext_resource type="PackedScene" uid="uid://bquja8jyk8kbr" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Textbox/vn_textbox_layer.tscn" id="4_4a2w4"]
+[ext_resource type="PackedScene" uid="uid://cn674foxwedqu" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_Input/full_advance_input_layer.tscn" id="5_qy41d"]
+[ext_resource type="PackedScene" uid="uid://dsbwnp5hegnu3" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_Glossary/glossary_popup_layer.tscn" id="6_xocos"]
+[ext_resource type="PackedScene" uid="uid://dhk6j6eb6e3q" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Choices/vn_choice_layer.tscn" id="7_m572d"]
+[ext_resource type="PackedScene" uid="uid://cvgf4c6gg0tsy" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_TextInput/text_input_layer.tscn" id="8_pm4lf"]
+[ext_resource type="PackedScene" uid="uid://lx24i8fl6uo" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_History/history_layer.tscn" id="9_xxa8i"]
+[ext_resource type="Script" path="res://addons/dialogic/Resources/dialogic_style.gd" id="10_8afrd"]
+
+[sub_resource type="Resource" id="Resource_qacpc"]
+script = ExtResource("2_lxphw")
+scene = ExtResource("1_kcqnr")
+overrides = {
+"disabled": "true"
+}
+
+[sub_resource type="Resource" id="Resource_ds3r4"]
+script = ExtResource("2_lxphw")
+scene = ExtResource("3_duxv5")
+overrides = {}
+
+[sub_resource type="Resource" id="Resource_wpp4i"]
+script = ExtResource("2_lxphw")
+scene = ExtResource("4_4a2w4")
+overrides = {
+"box_size": "Vector2(750, 250)",
+"next_indicator_show_on_autoadvance": "true",
+"typing_sounds_sounds_folder": "\"res://addons/dialogic/Example Assets/sound-effects\""
+}
+
+[sub_resource type="Resource" id="Resource_dgddu"]
+script = ExtResource("2_lxphw")
+scene = ExtResource("5_qy41d")
+overrides = {}
+
+[sub_resource type="Resource" id="Resource_cnedc"]
+script = ExtResource("2_lxphw")
+scene = ExtResource("6_xocos")
+overrides = {}
+
+[sub_resource type="Resource" id="Resource_1hr0q"]
+script = ExtResource("2_lxphw")
+scene = ExtResource("7_m572d")
+overrides = {}
+
+[sub_resource type="Resource" id="Resource_1qdfw"]
+script = ExtResource("2_lxphw")
+scene = ExtResource("8_pm4lf")
+overrides = {}
+
+[sub_resource type="Resource" id="Resource_iop8u"]
+script = ExtResource("2_lxphw")
+scene = ExtResource("9_xxa8i")
+overrides = {}
+
+[resource]
+script = ExtResource("10_8afrd")
+name = "cutscene"
+base_scene = ExtResource("1_3y0w7")
+base_overrides = {}
+layers = Array[ExtResource("2_lxphw")]([SubResource("Resource_qacpc"), SubResource("Resource_ds3r4"), SubResource("Resource_wpp4i"), SubResource("Resource_dgddu"), SubResource("Resource_cnedc"), SubResource("Resource_1hr0q"), SubResource("Resource_1qdfw"), SubResource("Resource_iop8u")])
+metadata/_latest_layer = 2

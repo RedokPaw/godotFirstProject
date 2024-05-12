@@ -5,17 +5,24 @@ extends CharacterBody2D
 const SPEED = 150.0
 const JUMP_VELOCITY = -340.0
 
+# In some other file, e.g. Player.gd
+var Cooldown = load('res://Scripts/player/Cooldown.gd')
+
+@onready var attack_cooldown = Cooldown.new(0.5)
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var health = 100
 var gold = 0
 var can_control : bool = true
+
 @onready var weapon_collision = $WeaponSprite2D/WeaponArea2D/WeaponCollisionShape2D 
 @onready var anim = $Animation
 
 
 
 func _physics_process(delta):
+	attack_cooldown.tick(delta)
 	if not can_control: return
 	
 	if not is_on_floor():
@@ -42,20 +49,22 @@ func _physics_process(delta):
 			anim.play("afk")
 			
 	#attack		
-	if Input.is_action_just_pressed("ui_select"):
+	if Input.is_action_just_pressed("ui_select") and attack_cooldown.is_ready():
+		
 		weapon_collision.disabled = false
 		anim.play("attack2")
+		$sfx/attackSound.play()
 		await anim.animation_finished
 		anim.play("afk")
 		weapon_collision.disabled = true
-		
+			
 	if direction == -1:
 		anim.flip_h = true
 		weapon_collision.position = Vector2(-6,0)
 	elif direction == 1:
 		anim.flip_h = false
 		weapon_collision.position = Vector2(6,0)
-	
+			
 	if health <= 0:
 		handle_death()
 	move_and_slide()

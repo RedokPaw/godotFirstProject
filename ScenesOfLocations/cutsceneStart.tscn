@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dr4v5162n48dh"]
+
+[ext_resource type="Script" path="res://ScenesOfLocations/cutsceneStart.gd" id="1_00h75"]
+[ext_resource type="Texture2D" uid="uid://ocdlpoj4qmpc" path="res://resources/assets/Locations/cutscene/photo_2024-05-12_17-18-19.jpg" id="1_55to3"]
+[ext_resource type="PackedScene" uid="uid://bww6ajfciqj83" path="res://Animations/transition_screen.tscn" id="3_i3it8"]
+
+[node name="CutsceneStart" type="Node2D"]
+script = ExtResource("1_00h75")
+
+[node name="Photo2024-05-1217-18-19" type="Sprite2D" parent="."]
+position = Vector2(574.75, 327)
+scale = Vector2(0.937094, 0.795259)
+texture = ExtResource("1_55to3")
+
+[node name="TransitionScreen" parent="." instance=ExtResource("3_i3it8")]
