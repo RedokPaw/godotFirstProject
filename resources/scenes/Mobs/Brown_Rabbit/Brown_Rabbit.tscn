@@ -1,0 +1,104 @@
+[gd_scene load_steps=15 format=3 uid="uid://d0i5ijp6nb630"]
+
+[ext_resource type="Texture2D" uid="uid://58lywdokb1m4" path="res://resources/assets/Rabbit/Monster Pack (Free)/Spritesheets/Updated Rabbit/Rabbit_Brown_Idle.png" id="1_osfyh"]
+[ext_resource type="Texture2D" uid="uid://c0xig6rdp8di6" path="res://resources/assets/Rabbit/Monster Pack (Free)/Spritesheets/Updated Rabbit/Rabbit_Brown_Move.png" id="2_m86bv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_63yga"]
+radius = 9.0
+height = 18.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nngop"]
+atlas = ExtResource("1_osfyh")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqbj8"]
+atlas = ExtResource("1_osfyh")
+region = Rect2(128, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxjjm"]
+atlas = ExtResource("1_osfyh")
+region = Rect2(256, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_shg1g"]
+atlas = ExtResource("1_osfyh")
+region = Rect2(384, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8htdv"]
+atlas = ExtResource("2_m86bv")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmdht"]
+atlas = ExtResource("2_m86bv")
+region = Rect2(128, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hadsw"]
+atlas = ExtResource("2_m86bv")
+region = Rect2(256, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8rvbp"]
+atlas = ExtResource("2_m86bv")
+region = Rect2(384, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojss3"]
+atlas = ExtResource("2_m86bv")
+region = Rect2(512, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xiq3e"]
+atlas = ExtResource("2_m86bv")
+region = Rect2(640, 256, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iun7n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nngop")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mqbj8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxjjm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_shg1g")
+}],
+"loop": true,
+"name": &"afk",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8htdv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmdht")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hadsw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8rvbp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ojss3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xiq3e")
+}],
+"loop": true,
+"name": &"run",
+"speed": 8.0
+}]
+
+[node name="Brown_Rabbit" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CapsuleShape2D_63yga")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -7)
+sprite_frames = SubResource("SpriteFrames_iun7n")
+animation = &"afk"
+frame_progress = 0.513475

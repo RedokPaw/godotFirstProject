@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cgbdqva3s1xr"
+path="res://.godot/imported/InfectedMouse.aseprite-c1e12b042e35b0e76859a7007302f97c.res"
+
+[deps]
+
+source_file="res://resources/assets/Infected Mouse/InfectedMouse.aseprite"
+dest_files=["res://.godot/imported/InfectedMouse.aseprite-c1e12b042e35b0e76859a7007302f97c.res"]
+
+[params]
+

@@ -1,0 +1,152 @@
+[gd_scene load_steps=22 format=3 uid="uid://dxp3okhk2ouwc"]
+
+[ext_resource type="Texture2D" uid="uid://6k2q6u0cfshi" path="res://resources/assets/Rabbit/Monster Pack (Free)/Spritesheets/Updated Rabbit Horned/Rabbit_Horned_Idle.png" id="1_s0teb"]
+[ext_resource type="Texture2D" uid="uid://i6b8b8d5xomn" path="res://resources/assets/Rabbit/Monster Pack (Free)/Spritesheets/Updated Rabbit Horned/Rabbit_Horned_Attack.png" id="2_riy1c"]
+[ext_resource type="Texture2D" uid="uid://0icxa3fntoau" path="res://resources/assets/Rabbit/Monster Pack (Free)/Spritesheets/Updated Rabbit Horned/Rabbit_Horned_Move.png" id="3_5lh5m"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7gvae"]
+radius = 9.0
+height = 18.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhn13"]
+atlas = ExtResource("1_s0teb")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogq0f"]
+atlas = ExtResource("1_s0teb")
+region = Rect2(128, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8wkf"]
+atlas = ExtResource("1_s0teb")
+region = Rect2(256, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyg7u"]
+atlas = ExtResource("1_s0teb")
+region = Rect2(384, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wi1u1"]
+atlas = ExtResource("2_riy1c")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehvxl"]
+atlas = ExtResource("2_riy1c")
+region = Rect2(128, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6ifx"]
+atlas = ExtResource("2_riy1c")
+region = Rect2(256, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6flp"]
+atlas = ExtResource("2_riy1c")
+region = Rect2(384, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wgnx1"]
+atlas = ExtResource("2_riy1c")
+region = Rect2(512, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4lvc0"]
+atlas = ExtResource("2_riy1c")
+region = Rect2(640, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eh2gg"]
+atlas = ExtResource("3_5lh5m")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_krhdh"]
+atlas = ExtResource("3_5lh5m")
+region = Rect2(128, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5kgud"]
+atlas = ExtResource("3_5lh5m")
+region = Rect2(256, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvld1"]
+atlas = ExtResource("3_5lh5m")
+region = Rect2(384, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mgbth"]
+atlas = ExtResource("3_5lh5m")
+region = Rect2(512, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vvoe"]
+atlas = ExtResource("3_5lh5m")
+region = Rect2(640, 256, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fimf2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rhn13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ogq0f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8wkf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eyg7u")
+}],
+"loop": true,
+"name": &"afk",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wi1u1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehvxl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6ifx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6flp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wgnx1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4lvc0")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eh2gg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_krhdh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5kgud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wvld1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mgbth")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0vvoe")
+}],
+"loop": true,
+"name": &"run",
+"speed": 8.0
+}]
+
+[node name="HornedRabbit" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CapsuleShape2D_7gvae")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -7)
+sprite_frames = SubResource("SpriteFrames_fimf2")
+animation = &"afk"
+frame_progress = 0.217934

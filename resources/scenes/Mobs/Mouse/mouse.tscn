@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://d1j70clewxwtm"]
+
+[ext_resource type="Texture2D" uid="uid://byyy8fifahfjt" path="res://resources/assets/Infected Mouse/InfectedMouse.png" id="1_dqslm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v5mgf"]
+radius = 9.0
+height = 18.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1tpy6"]
+atlas = ExtResource("1_dqslm")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rs5t"]
+atlas = ExtResource("1_dqslm")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ql5hd"]
+atlas = ExtResource("1_dqslm")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6sku7"]
+atlas = ExtResource("1_dqslm")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4lmk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1tpy6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5rs5t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ql5hd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6sku7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CapsuleShape2D_v5mgf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -5)
+scale = Vector2(1.8125, 1.8125)
+sprite_frames = SubResource("SpriteFrames_g4lmk")
+frame = 3
+frame_progress = 0.656333

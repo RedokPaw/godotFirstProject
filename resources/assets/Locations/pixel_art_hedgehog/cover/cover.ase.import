@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dv5jhce48nrd6"
+path="res://.godot/imported/cover.ase-ca938038ca8f9cc608fc66b46a545942.res"
+
+[deps]
+
+source_file="res://resources/assets/Locations/pixel_art_hedgehog/cover/cover.ase"
+dest_files=["res://.godot/imported/cover.ase-ca938038ca8f9cc608fc66b46a545942.res"]
+
+[params]
+

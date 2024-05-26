@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bobmr5aseufhp"
+path="res://.godot/imported/hedgehog.ase-15a7ffd03ae999e031a757aded8fa82b.res"
+
+[deps]
+
+source_file="res://resources/assets/Locations/pixel_art_hedgehog/hedgehog.ase"
+dest_files=["res://.godot/imported/hedgehog.ase-15a7ffd03ae999e031a757aded8fa82b.res"]
+
+[params]
+
