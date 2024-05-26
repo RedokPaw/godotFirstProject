@@ -8,8 +8,8 @@
 script = ExtResource("1_00h75")
 
 [node name="Photo2024-05-1217-18-19" type="Sprite2D" parent="."]
-position = Vector2(574.75, 327)
-scale = Vector2(0.937094, 0.795259)
+scale = Vector2(0.935065, 0.774784)
 texture = ExtResource("1_55to3")
+centered = false
 
 [node name="TransitionScreen" parent="." instance=ExtResource("3_i3it8")]
