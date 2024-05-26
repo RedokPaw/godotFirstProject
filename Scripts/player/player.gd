@@ -5,6 +5,7 @@ var save_path = "user://variable.save"
 const SPEED = 150.0
 const JUMP_VELOCITY = -340.0
 var knockback = Vector2.ZERO
+var playerDamage = 30
 
 # In some other file, e.g. Player.gd
 var Cooldown = load('res://Scripts/player/Cooldown.gd')
@@ -13,7 +14,8 @@ var Cooldown = load('res://Scripts/player/Cooldown.gd')
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var health = 100
+var max_health = 100
+var health = max_health
 var gold = 0
 var can_control : bool = true
 
@@ -22,6 +24,7 @@ var can_control : bool = true
 
 func _on_ready():
 	load_data()
+	health = max_health
 
 func _physics_process(delta):
 	attack_cooldown.tick(delta)
@@ -92,32 +95,37 @@ func _on_transition_screen_transitioned():
 func _on_weapon_area_2d_body_entered(body):
 	print("body entered weapon area")
 	if body.is_in_group("Enemies") and anim.animation == "attack2":
-		body.get_damage(30)
+		body.get_damage(playerDamage)
 func hitKnockback(enemyVelocity: Vector2):
 	var knockbackDirection = (enemyVelocity - velocity).normalized() * 200
 	knockback = knockbackDirection
 	move_and_slide()
 func getDamage(damage, enemyVelocity):
 	health -= damage
+	$hit.play("get_hit")
 	hitKnockback(enemyVelocity)
 
 func save_data():
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
-	file.store_var(health)
+	file.store_var(max_health)
 	file.store_var(gold)
+	file.store_var(playerDamage)
 	file.close()
 func load_data():
 	if FileAccess.file_exists(save_path):
 		var file = FileAccess.open(save_path, FileAccess.READ)
-		health = file.get_var()
+		max_health = file.get_var()
 		gold = file.get_var()
+		playerDamage = file.get_var()
 	else:
-		health = 100
+		max_health = 100
 		gold = 0
+		playerDamage = 30
 func save_default_data():
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
 	file.store_var(100)
 	file.store_var(0)
+	file.store_var(30)
 	file.close()
 	
 func change_camera_position(limit_left, limit_right, limit_top, limit_bottom):

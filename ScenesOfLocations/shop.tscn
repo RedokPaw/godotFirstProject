@@ -1,10 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://o5qhqyjbuvua"]
+[gd_scene load_steps=12 format=3 uid="uid://o5qhqyjbuvua"]
 
+[ext_resource type="Script" path="res://ScenesOfLocations/shop.gd" id="1_blkjn"]
 [ext_resource type="Texture2D" uid="uid://bqpxvw5fj6jhp" path="res://resources/assets/Main/OldMAIN/BGmenu.png" id="1_yglsl"]
-[ext_resource type="Texture2D" uid="uid://b57oo3ypgpdio" path="res://resources/assets/Main/OldMAIN/start.png" id="2_375rh"]
 [ext_resource type="Texture2D" uid="uid://cglt81euf1nol" path="res://resources/assets/Main/OldMAIN/quit.png" id="3_cnfg6"]
+[ext_resource type="Texture2D" uid="uid://cw6f2xg7o1jky" path="res://resources/assets/Buttons/vecteezy_an-8-bit-retro-styled-pixel-art-illustration-of-a-stone-sword_19527033.png" id="3_gpduh"]
+[ext_resource type="Texture2D" uid="uid://g025s1wvxtl3" path="res://resources/assets/Buttons/pngwing.com.png" id="4_yfsr7"]
+[ext_resource type="Script" path="res://ScenesOfLocations/currentHp.gd" id="6_mm7ab"]
+[ext_resource type="Script" path="res://ScenesOfLocations/currentDamage.gd" id="7_ueh3a"]
+[ext_resource type="Script" path="res://ScenesOfLocations/currentGold.gd" id="8_hdvqk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3gygd"]
+font_size = 35
+
+[sub_resource type="LabelSettings" id="LabelSettings_se5nh"]
+font_size = 35
+
+[sub_resource type="LabelSettings" id="LabelSettings_wuyj4"]
+font_size = 40
 
 [node name="Shop" type="Node2D"]
+script = ExtResource("1_blkjn")
 
 [node name="BackGround" type="Sprite2D" parent="."]
 position = Vector2(-1, -37)
@@ -12,44 +27,44 @@ scale = Vector2(0.934253, 0.802802)
 texture = ExtResource("1_yglsl")
 centered = false
 
-[node name="startButton" type="Button" parent="BackGround"]
+[node name="damageButtonUp" type="Button" parent="BackGround"]
 top_level = true
 light_mask = 3
 visibility_layer = 3
-offset_left = 629.0
-offset_top = 269.0
-offset_right = 853.0
-offset_bottom = 339.0
+offset_left = 630.0
+offset_top = 220.0
+offset_right = 868.0
+offset_bottom = 412.0
 
-[node name="start" type="Sprite2D" parent="BackGround/startButton"]
+[node name="damage" type="Sprite2D" parent="BackGround/damageButtonUp"]
 light_mask = 3
 visibility_layer = 3
 z_index = 2
-position = Vector2(105, 42)
-scale = Vector2(0.678788, 0.538462)
-texture = ExtResource("2_375rh")
+position = Vector2(115, 93)
+scale = Vector2(0.064036, 0.0543078)
+texture = ExtResource("3_gpduh")
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": true
 }
 
-[node name="quitButton" type="Button" parent="BackGround"]
+[node name="healthButtonUp" type="Button" parent="BackGround"]
 top_level = true
 light_mask = 3
 visibility_layer = 3
-offset_left = 271.0
-offset_top = 267.0
-offset_right = 495.0
-offset_bottom = 338.0
+offset_left = 275.0
+offset_top = 220.0
+offset_right = 501.0
+offset_bottom = 410.0
 
-[node name="quit" type="Sprite2D" parent="BackGround/quitButton"]
+[node name="health" type="Sprite2D" parent="BackGround/healthButtonUp"]
 light_mask = 3
 visibility_layer = 3
 z_index = 2
-position = Vector2(124, 45)
-scale = Vector2(0.678788, 0.546154)
-texture = ExtResource("3_cnfg6")
+position = Vector2(105, 91)
+scale = Vector2(0.401894, 0.359015)
+texture = ExtResource("4_yfsr7")
 
-[node name="quitButton" type="Button" parent="."]
+[node name="resumeButton" type="Button" parent="."]
 top_level = true
 light_mask = 3
 visibility_layer = 3
@@ -58,22 +73,52 @@ offset_top = 445.0
 offset_right = 696.0
 offset_bottom = 516.0
 
-[node name="quit" type="Sprite2D" parent="quitButton"]
+[node name="resume" type="Sprite2D" parent="resumeButton"]
 light_mask = 3
 visibility_layer = 3
 z_index = 2
-position = Vector2(103, 6)
+position = Vector2(86, 25)
 scale = Vector2(0.678788, 0.546154)
 texture = ExtResource("3_cnfg6")
 
 [node name="Node2D" type="Node2D" parent="."]
 
-[connection signal="mouse_entered" from="BackGround/startButton" to="BackGround/startButton" method="on_mouse_entered"]
-[connection signal="mouse_exited" from="BackGround/startButton" to="BackGround/startButton" method="on_mouse_exited"]
-[connection signal="pressed" from="BackGround/startButton" to="BackGround/startButton" method="_on_pressed"]
-[connection signal="mouse_entered" from="BackGround/quitButton" to="BackGround/quitButton" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="BackGround/quitButton" to="BackGround/quitButton" method="_on_mouse_exited"]
-[connection signal="pressed" from="BackGround/quitButton" to="BackGround/quitButton" method="_on_pressed"]
-[connection signal="mouse_entered" from="quitButton" to="quitButton" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="quitButton" to="quitButton" method="_on_mouse_exited"]
-[connection signal="pressed" from="quitButton" to="quitButton" method="_on_pressed"]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="currentHp" type="Label" parent="CanvasLayer"]
+offset_left = 273.0
+offset_top = 147.0
+offset_right = 502.0
+offset_bottom = 217.0
+label_settings = SubResource("LabelSettings_3gygd")
+script = ExtResource("6_mm7ab")
+
+[node name="currentDamage" type="Label" parent="CanvasLayer"]
+offset_left = 635.0
+offset_top = 153.0
+offset_right = 862.0
+offset_bottom = 218.0
+label_settings = SubResource("LabelSettings_se5nh")
+script = ExtResource("7_ueh3a")
+
+[node name="currentGold" type="Label" parent="CanvasLayer"]
+offset_left = 471.0
+offset_top = 60.0
+offset_right = 663.0
+offset_bottom = 166.0
+label_settings = SubResource("LabelSettings_wuyj4")
+horizontal_alignment = 1
+script = ExtResource("8_hdvqk")
+
+[connection signal="mouse_entered" from="BackGround/damageButtonUp" to="BackGround/damageButtonUp" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="BackGround/damageButtonUp" to="BackGround/damageButtonUp" method="on_mouse_exited"]
+[connection signal="pressed" from="BackGround/damageButtonUp" to="." method="_on_damage_button_up_pressed"]
+[connection signal="pressed" from="BackGround/damageButtonUp" to="BackGround/damageButtonUp" method="_on_pressed"]
+[connection signal="mouse_entered" from="BackGround/healthButtonUp" to="BackGround/healthButtonUp" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="BackGround/healthButtonUp" to="BackGround/healthButtonUp" method="_on_mouse_exited"]
+[connection signal="pressed" from="BackGround/healthButtonUp" to="." method="_on_health_button_up_pressed"]
+[connection signal="pressed" from="BackGround/healthButtonUp" to="BackGround/healthButtonUp" method="_on_pressed"]
+[connection signal="mouse_entered" from="resumeButton" to="resumeButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="resumeButton" to="resumeButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="resumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="resumeButton" to="resumeButton" method="_on_pressed"]
