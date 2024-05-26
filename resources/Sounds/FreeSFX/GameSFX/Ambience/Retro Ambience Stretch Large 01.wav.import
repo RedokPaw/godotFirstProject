@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dv0n0kkgbgqsn"
+path="res://.godot/imported/Retro Ambience Stretch Large 01.wav-301f7f628d31dc0df6777560fafb98bf.sample"
+
+[deps]
+
+source_file="res://resources/Sounds/FreeSFX/GameSFX/Ambience/Retro Ambience Stretch Large 01.wav"
+dest_files=["res://.godot/imported/Retro Ambience Stretch Large 01.wav-301f7f628d31dc0df6777560fafb98bf.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
