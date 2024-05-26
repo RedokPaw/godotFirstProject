@@ -1,25 +1,25 @@
 [gd_scene load_steps=8 format=3 uid="uid://wwtpc82gqiui"]
 
-[ext_resource type="Texture2D" uid="uid://b75vthk16vdqa" path="res://resources/assets/Mawing Beaver/MawingBeaver.png" id="1_ak0l6"]
+[ext_resource type="Texture2D" uid="uid://b75vthk16vdqa" path="res://resources/assets/Mawing Beaver/MawingBeaver.png" id="1_4ykd2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_itmu8"]
 radius = 12.0
 height = 24.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u8lv8"]
-atlas = ExtResource("1_ak0l6")
+atlas = ExtResource("1_4ykd2")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m514u"]
-atlas = ExtResource("1_ak0l6")
+atlas = ExtResource("1_4ykd2")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c77kh"]
-atlas = ExtResource("1_ak0l6")
+atlas = ExtResource("1_4ykd2")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hqfef"]
-atlas = ExtResource("1_ak0l6")
+atlas = ExtResource("1_4ykd2")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_81uxv"]
@@ -54,4 +54,4 @@ position = Vector2(-3, -2)
 scale = Vector2(1.75, 1.75)
 sprite_frames = SubResource("SpriteFrames_81uxv")
 animation = &"afk"
-frame_progress = 0.640475
+frame_progress = 0.589418

@@ -101,4 +101,3 @@ shape = SubResource("CapsuleShape2D_63yga")
 position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_iun7n")
 animation = &"afk"
-frame_progress = 0.513475

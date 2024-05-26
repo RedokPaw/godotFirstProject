@@ -148,5 +148,4 @@ shape = SubResource("CapsuleShape2D_7gvae")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_fimf2")
-animation = &"afk"
-frame_progress = 0.217934
+animation = &"attack"
