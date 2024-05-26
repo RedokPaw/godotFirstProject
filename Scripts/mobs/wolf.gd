@@ -1,10 +1,13 @@
 extends CharacterBody2D
 
+
+var save_path = "user://variable.save"
+
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var speed = 65
 var health = 100
 var chase = false
-var knockbackPower = 5
+var knockbackPower = 250
 var knockback = Vector2.ZERO
 
 var Cooldown = load('res://Scripts/player/Cooldown.gd')
@@ -45,7 +48,7 @@ func _physics_process(delta):
 	knockback = lerp(knockback, Vector2.ZERO, 0.05)
 	
 func attack(body):
-	if attack_cooldown.is_ready():
+	if attack_cooldown.is_ready() and alive:
 		anim.stop()
 		anim.play("attack")
 		body.getDamage(30, velocity)
@@ -80,7 +83,7 @@ func death():
 	anim.play("death")
 	await anim.animation_finished
 	queue_free()
-	
+
 func get_damage(damage):
 	health -= damage
 	if health < 0:
@@ -97,6 +100,11 @@ func _on_wolf_animated_sprite_2d_animation_finished():
 	anim.play("afk")
 	
 func hitKnockback():
-	var knockbackDirection = Vector2(-velocity.x, 0) * knockbackPower
+	var normalKnockbackPower
+	if velocity.x < 0:
+		normalKnockbackPower = knockbackPower
+	else:
+		normalKnockbackPower = -knockbackPower
+	var knockbackDirection = Vector2(-velocity.x + normalKnockbackPower, 0)
 	knockback = knockbackDirection
 	move_and_slide()

@@ -1,7 +1,7 @@
 class_name Player
 extends CharacterBody2D
 
-
+var save_path = "user://variable.save"
 const SPEED = 150.0
 const JUMP_VELOCITY = -340.0
 var knockback = Vector2.ZERO
@@ -20,7 +20,8 @@ var can_control : bool = true
 @onready var weapon_collision = $WeaponSprite2D/WeaponArea2D/WeaponCollisionShape2D 
 @onready var anim = $Animation
 
-
+func _on_ready():
+	load_data()
 
 func _physics_process(delta):
 	attack_cooldown.tick(delta)
@@ -99,4 +100,28 @@ func hitKnockback(enemyVelocity: Vector2):
 func getDamage(damage, enemyVelocity):
 	health -= damage
 	hitKnockback(enemyVelocity)
+
+func save_data():
+	var file = FileAccess.open(save_path, FileAccess.WRITE)
+	file.store_var(health)
+	file.store_var(gold)
+	file.close()
+func load_data():
+	if FileAccess.file_exists(save_path):
+		var file = FileAccess.open(save_path, FileAccess.READ)
+		health = file.get_var()
+		gold = file.get_var()
+	else:
+		health = 100
+		gold = 0
+func save_default_data():
+	var file = FileAccess.open(save_path, FileAccess.WRITE)
+	file.store_var(100)
+	file.store_var(0)
+	file.close()
 	
+func change_camera_position(limit_left, limit_right, limit_top, limit_bottom):
+	$Camera2D.limit_left = limit_left
+	$Camera2D.limit_right = limit_right
+	$Camera2D.limit_top = limit_top
+	$Camera2D.limit_bottom = limit_bottom
