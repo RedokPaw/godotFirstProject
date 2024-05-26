@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cwhupm80cy703"
+path="res://.godot/imported/Retro Vehicle SciFi 01.wav-ad1569253e0e01d44cc4a9359ae2c0b1.sample"
+
+[deps]
+
+source_file="res://resources/Sounds/FreeSFX/GameSFX/Vehicles/Retro Vehicle SciFi 01.wav"
+dest_files=["res://.godot/imported/Retro Vehicle SciFi 01.wav-ad1569253e0e01d44cc4a9359ae2c0b1.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

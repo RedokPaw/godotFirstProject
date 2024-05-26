@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bd1dct5s5kfo6"
+path="res://.godot/imported/Retro Weapon Reload Best A 03.wav-1e2ae7a3a66f653194bf741c84c755d0.sample"
+
+[deps]
+
+source_file="res://resources/Sounds/FreeSFX/GameSFX/Weapon/reload/Retro Weapon Reload Best A 03.wav"
+dest_files=["res://.godot/imported/Retro Weapon Reload Best A 03.wav-1e2ae7a3a66f653194bf741c84c755d0.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
