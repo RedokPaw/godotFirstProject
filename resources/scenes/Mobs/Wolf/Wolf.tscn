@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://blmecvbsnm4u1"]
+[gd_scene load_steps=43 format=3 uid="uid://blmecvbsnm4u1"]
 
 [ext_resource type="Script" path="res://Scripts/mobs/wolf.gd" id="1_k3t6e"]
 [ext_resource type="Texture2D" uid="uid://c2lk0jhs4idj1" path="res://resources/assets/Wolf/Canine_Gray_Idle.png" id="2_n4nsn"]
@@ -251,6 +251,26 @@ size = Vector2(11, 3)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y6siw"]
 size = Vector2(20, 11)
 
+[sub_resource type="Animation" id="Animation_7pv1u"]
+resource_name = "get_hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WolfAnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.2, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0.0235294, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_23ikv"]
+_data = {
+"get_hit": SubResource("Animation_7pv1u")
+}
+
 [node name="Wolf" type="CharacterBody2D"]
 script = ExtResource("1_k3t6e")
 
@@ -278,12 +298,19 @@ shape = SubResource("RectangleShape2D_ykd62")
 
 [node name="Death2" type="Area2D" parent="."]
 
-[node name="FollowAreaCollision" type="CollisionShape2D" parent="Death2"]
+[node name="DamageArea" type="CollisionShape2D" parent="Death2"]
 position = Vector2(-4, 3.5)
 shape = SubResource("RectangleShape2D_y6siw")
 
 [node name="Timer" type="Timer" parent="Death2"]
 
+[node name="hit" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_23ikv")
+}
+speed_scale = 2.5
+
+[connection signal="animation_finished" from="WolfAnimatedSprite2D" to="." method="_on_wolf_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="FollowArea" to="." method="_on_follow_area_body_entered"]
 [connection signal="body_exited" from="FollowArea" to="." method="_on_follow_area_body_exited"]
 [connection signal="body_entered" from="Death" to="." method="_on_death_body_entered"]

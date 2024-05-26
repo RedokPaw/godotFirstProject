@@ -4,6 +4,7 @@ extends CharacterBody2D
 
 const SPEED = 150.0
 const JUMP_VELOCITY = -340.0
+var knockback = Vector2.ZERO
 
 # In some other file, e.g. Player.gd
 var Cooldown = load('res://Scripts/player/Cooldown.gd')
@@ -40,11 +41,11 @@ func _physics_process(delta):
 		
 	var direction = Input.get_axis("ui_left", "ui_right")
 	if direction:
-		velocity.x = direction * SPEED
+		velocity.x = direction * SPEED + knockback.x
 		if velocity.y == 0 and not anim.animation == "attack2":
 			anim.play("run")
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, SPEED) + knockback.x
 		if velocity.y == 0 and not anim.animation == "attack2":
 			anim.play("afk")
 			
@@ -68,6 +69,7 @@ func _physics_process(delta):
 	if health <= 0:
 		handle_death()
 	move_and_slide()
+	knockback = lerp(knockback, Vector2.ZERO, 0.1)
 	
 func handle_death() -> void:
 	print("death of player detected")
@@ -89,4 +91,12 @@ func _on_transition_screen_transitioned():
 func _on_weapon_area_2d_body_entered(body):
 	print("body entered weapon area")
 	if body.is_in_group("Enemies") and anim.animation == "attack2":
-		body.death()
+		body.get_damage(30)
+func hitKnockback(enemyVelocity: Vector2):
+	var knockbackDirection = (enemyVelocity - velocity).normalized() * 200
+	knockback = knockbackDirection
+	move_and_slide()
+func getDamage(damage, enemyVelocity):
+	health -= damage
+	hitKnockback(enemyVelocity)
+	

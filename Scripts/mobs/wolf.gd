@@ -2,7 +2,9 @@ extends CharacterBody2D
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var speed = 100
+var health = 100
 var chase = false
+var knockback = Vector2.ZERO
 
 var Cooldown = load('res://Scripts/player/Cooldown.gd')
 
@@ -16,16 +18,15 @@ func _on_ready():
 	add_to_group("Enemies")
 
 func _physics_process(delta):
+	var player = $"../../Player/Player"
+	var direction = (player.position - self.position).normalized()
 	attack_cooldown.tick(delta)
 	if not is_on_floor():
 		velocity.y += gravity * delta
-		
-	var player = $"../../Player/Player"
-	var direction = (player.position - self.position).normalized()
 	
 	if alive == true:
 		if chase == true and not anim.animation == "attack":
-			velocity.x = direction.x * speed
+			velocity.x = direction.x * speed + knockback.x
 			anim.play ("run")
 			
 		else:
@@ -39,11 +40,13 @@ func _physics_process(delta):
 		else:
 			anim.flip_h = true
 	move_and_slide()
+	knockback = lerp(knockback, Vector2.ZERO, 0.05)
 	
 func attack(body):
 	if attack_cooldown.is_ready():
+		hitKnockback()
 		anim.play("attack")
-		body.health -=30
+		body.getDamage(30, velocity)
 
 func _on_follow_area_body_entered(body):
 	if body.name == "Player":
@@ -54,7 +57,7 @@ func _on_follow_area_body_exited(body):
 		chase = false
 		
 func _on_death_2_body_entered(body):
-	while true:
+	while alive:
 		if body.name == "Player":
 			attack(body)
 			await anim.animation_finished
@@ -66,10 +69,25 @@ func _on_death_2_body_entered(body):
 			break
 
 func death():
+	velocity.x = 0
 	alive = false
 	anim.modulate = Color(1, 0, 0)
 	anim.play("death")
 	await anim.animation_finished
 	queue_free()
-
-
+func get_damage(damage):
+	health -= damage
+	if health < 0:
+		death()
+		return
+	hitKnockback()
+	anim.play("takeHit")
+	$hit.play("get_hit")
+	await anim.animation_finished
+	anim.play("afk")
+func _on_wolf_animated_sprite_2d_animation_finished():
+	anim.play("afk")
+func hitKnockback():
+	var knockbackDirection = Vector2(-velocity.x, 0) * 4
+	knockback = knockbackDirection
+	move_and_slide()

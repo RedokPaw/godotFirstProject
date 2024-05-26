@@ -33118,7 +33118,7 @@ collision_layer = 5
 [node name="Mobs" type="Node2D" parent="." groups=["Enemies"]]
 
 [node name="Rat" parent="Mobs" instance=ExtResource("15_y20lg")]
-position = Vector2(140, 590)
+position = Vector2(41, 587)
 floor_max_angle = 1.49924
 floor_snap_length = 6.0
 safe_margin = 0.001
@@ -33127,7 +33127,7 @@ safe_margin = 0.001
 position = Vector2(1021, 591)
 
 [node name="Wolf2" parent="Mobs" groups=["Enemies"] instance=ExtResource("18_02ieg")]
-position = Vector2(987, 591)
+position = Vector2(324, 524)
 
 [node name="Wolf3" parent="Mobs" groups=["Enemies"] instance=ExtResource("18_02ieg")]
 position = Vector2(1158, 564)
