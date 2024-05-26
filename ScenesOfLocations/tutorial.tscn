@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://blmecvbsnm4u1" path="res://resources/scenes/Mobs/Wolf/Wolf.tscn" id="18_02ieg"]
 [ext_resource type="Script" path="res://Scripts/level_1/Death_Zone.gd" id="18_u5sjm"]
 [ext_resource type="PackedScene" uid="uid://bww6ajfciqj83" path="res://Animations/transition_screen.tscn" id="19_b1k6s"]
+[ext_resource type="PackedScene" uid="uid://bi38qnlnx6h35" path="res://resources/scenes/LootChest/LootChest.tscn" id="21_pjue0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a8wy8"]
 texture = ExtResource("9_21unv")
@@ -32980,24 +32981,11 @@ func _process(_delta):
 	text = \"GOLD: \" + str($\"../../Player/Player\".gold)
 "
 
-[sub_resource type="GDScript" id="GDScript_ud2en"]
-script/source = "extends Node2D
-
-var coin = preload(\"res://resources/scenes/Collectibles/CoinGold.tscn\")
-
-func _on_timer_timeout():
-	var coinTemp = coin.instantiate()
-	var random = RandomNumberGenerator.new()
-	var randint = randi_range(30, 175)
-	coinTemp.position = Vector2(randint, 580)
-	add_child(coinTemp)
-"
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f855r"]
 size = Vector2(380, 38.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8k0fj"]
-size = Vector2(237, 338.5)
+size = Vector2(237.5, 338.5)
 
 [node name="Tutorial" type="Node2D"]
 script = ExtResource("1_8at6l")
@@ -33055,6 +33043,7 @@ motion_scale = Vector2(0.8, 1)
 motion_mirroring = Vector2(1152, 0)
 
 [node name="Layer3" type="Sprite2D" parent="Tutorial/BGLayer3"]
+position = Vector2(-15, -4)
 scale = Vector2(3, 3)
 texture = ExtResource("6_1s6rv")
 centered = false
@@ -33095,7 +33084,6 @@ layer_0/tile_data = PackedInt32Array(2555921, 131072, 58, 2621457, 131072, 59, 2
 [node name="Main" type="TileMap" parent="."]
 position = Vector2(2, 0)
 tile_set = SubResource("TileSet_vtgsn")
-collision_visibility_mode = 1
 format = 2
 layer_0/name = "main"
 layer_0/z_index = 2
@@ -33123,23 +33111,14 @@ floor_max_angle = 1.49924
 floor_snap_length = 6.0
 safe_margin = 0.001
 
-[node name="Wolf1" parent="Mobs" groups=["Enemies"] instance=ExtResource("18_02ieg")]
-position = Vector2(1021, 591)
-
 [node name="Wolf2" parent="Mobs" groups=["Enemies"] instance=ExtResource("18_02ieg")]
-position = Vector2(324, 524)
+position = Vector2(857, 547)
 
 [node name="Wolf3" parent="Mobs" groups=["Enemies"] instance=ExtResource("18_02ieg")]
-position = Vector2(1158, 564)
-
-[node name="Wolf4" parent="Mobs" groups=["Enemies"] instance=ExtResource("18_02ieg")]
-position = Vector2(1059, 594)
-
-[node name="Wolf5" parent="Mobs" groups=["Enemies"] instance=ExtResource("18_02ieg")]
-position = Vector2(1095, 594)
+position = Vector2(1557, 580)
 
 [node name="Wolf6" parent="Mobs" groups=["Enemies"] instance=ExtResource("18_02ieg")]
-position = Vector2(950, 595)
+position = Vector2(1068, 595)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -33161,13 +33140,6 @@ theme_override_font_sizes/font_size = 15
 text = "GOLD"
 script = SubResource("GDScript_pfyaa")
 
-[node name="Collectibles" type="Node2D" parent="."]
-script = SubResource("GDScript_ud2en")
-
-[node name="Timer" type="Timer" parent="Collectibles"]
-wait_time = 3.0
-autostart = true
-
 [node name="Fall Death" type="Node2D" parent="."]
 
 [node name="Death_Zone" type="Area2D" parent="Fall Death"]
@@ -33187,10 +33159,15 @@ shape = SubResource("RectangleShape2D_f855r")
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NextLevelZone/NextLevelArea"]
-position = Vector2(2185, 376)
+position = Vector2(2185.25, 376)
 shape = SubResource("RectangleShape2D_8k0fj")
 
-[connection signal="timeout" from="Collectibles/Timer" to="Collectibles" method="_on_timer_timeout"]
+[node name="LootChest" parent="." instance=ExtResource("21_pjue0")]
+position = Vector2(299, 553)
+
+[node name="LootChest2" parent="." instance=ExtResource("21_pjue0")]
+position = Vector2(1718, 489)
+
 [connection signal="body_entered" from="Fall Death/Death_Zone" to="Fall Death/Death_Zone" method="_on_body_entered"]
 [connection signal="transitioned" from="TransitionScreen" to="Player/Player" method="_on_transition_screen_transitioned"]
 [connection signal="body_entered" from="NextLevelZone/NextLevelArea" to="." method="_on_next_level_area_body_entered"]

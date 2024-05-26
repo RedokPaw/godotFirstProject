@@ -1,9 +1,10 @@
 extends CharacterBody2D
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var speed = 100
+var speed = 65
 var health = 100
 var chase = false
+var knockbackPower = 5
 var knockback = Vector2.ZERO
 
 var Cooldown = load('res://Scripts/player/Cooldown.gd')
@@ -25,9 +26,10 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 	
 	if alive == true:
-		if chase == true and not anim.animation == "attack":
+		if chase == true:
 			velocity.x = direction.x * speed + knockback.x
-			anim.play ("run")
+			if anim.animation != "attack":
+				anim.play("run")
 			
 		else:
 			if not anim.animation == "attack":
@@ -44,9 +46,12 @@ func _physics_process(delta):
 	
 func attack(body):
 	if attack_cooldown.is_ready():
-		hitKnockback()
+		anim.stop()
 		anim.play("attack")
 		body.getDamage(30, velocity)
+		hitKnockback()
+		await anim.animation_finished
+		anim.play("afk")
 
 func _on_follow_area_body_entered(body):
 	if body.name == "Player":
@@ -75,19 +80,23 @@ func death():
 	anim.play("death")
 	await anim.animation_finished
 	queue_free()
+	
 func get_damage(damage):
 	health -= damage
 	if health < 0:
 		death()
 		return
 	hitKnockback()
+	anim.stop()
 	anim.play("takeHit")
 	$hit.play("get_hit")
 	await anim.animation_finished
 	anim.play("afk")
+	
 func _on_wolf_animated_sprite_2d_animation_finished():
 	anim.play("afk")
+	
 func hitKnockback():
-	var knockbackDirection = Vector2(-velocity.x, 0) * 4
+	var knockbackDirection = Vector2(-velocity.x, 0) * knockbackPower
 	knockback = knockbackDirection
 	move_and_slide()

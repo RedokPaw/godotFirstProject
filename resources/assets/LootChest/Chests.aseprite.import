@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cv1ljx1cjmxfk"
+path="res://.godot/imported/Chests.aseprite-1bec58d048fba863253205745296b42f.res"
+
+[deps]
+
+source_file="res://resources/assets/LootChest/Chests.aseprite"
+dest_files=["res://.godot/imported/Chests.aseprite-1bec58d048fba863253205745296b42f.res"]
+
+[params]
+

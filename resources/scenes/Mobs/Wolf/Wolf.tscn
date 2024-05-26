@@ -308,7 +308,7 @@ shape = SubResource("RectangleShape2D_y6siw")
 libraries = {
 "": SubResource("AnimationLibrary_23ikv")
 }
-speed_scale = 2.5
+speed_scale = 1.85
 
 [connection signal="animation_finished" from="WolfAnimatedSprite2D" to="." method="_on_wolf_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="FollowArea" to="." method="_on_follow_area_body_entered"]

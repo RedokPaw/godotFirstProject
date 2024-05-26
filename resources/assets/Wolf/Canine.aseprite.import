@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://blyfcwjitc50y"
+path="res://.godot/imported/Canine.aseprite-a21220a6b0fb99ad36728760c50aedff.res"
+
+[deps]
+
+source_file="res://resources/assets/Wolf/Canine.aseprite"
+dest_files=["res://.godot/imported/Canine.aseprite-a21220a6b0fb99ad36728760c50aedff.res"]
+
+[params]
+

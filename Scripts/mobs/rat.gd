@@ -3,7 +3,7 @@ extends CharacterBody2D
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var runaway = false
-var speed = 80
+var speed = 15
 @onready var anim = $AnimatedSprite2D
 
 func _physics_process(delta):

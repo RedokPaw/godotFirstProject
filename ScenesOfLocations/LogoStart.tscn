@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://1kibrwr4xo1o"]
+
+[ext_resource type="Script" path="res://StartLogo.gd" id="1_vns04"]
+[ext_resource type="Texture2D" uid="uid://fo48nnk3is1t" path="res://resources/assets/Main/Logo/photo_2024-04-14_21-32-03.jpg" id="2_svmsw"]
+[ext_resource type="PackedScene" uid="uid://bww6ajfciqj83" path="res://Animations/transition_screen.tscn" id="3_dg0yk"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_vns04")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576, 369)
+scale = Vector2(1.04786, 1.0483)
+texture = ExtResource("2_svmsw")
+
+[node name="TransitionScreen" parent="Sprite2D" instance=ExtResource("3_dg0yk")]
+
+[node name="Timer" type="Timer" parent="Sprite2D/TransitionScreen"]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="transitioned" from="Sprite2D/TransitionScreen" to="." method="_on_transition_screen_transitioned"]
+[connection signal="timeout" from="Sprite2D/TransitionScreen/Timer" to="." method="_on_timer_timeout"]
